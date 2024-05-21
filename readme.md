@@ -16,8 +16,10 @@ docker-compose up -d
 容器启动后需对v2board进行初始化
 
 ```shell
-docker exec -it 容器名称 sh -c "cd /v2b && sh init.sh"
+docker exec -it v2board sh -c "cd /v2b && sh init.sh"
 ```
+
+默认容器名称 `v2board`
 
 默认Web端口 `8952`
 
@@ -25,7 +27,7 @@ docker exec -it 容器名称 sh -c "cd /v2b && sh init.sh"
 
 与官方一样，使用
 ```shell
-docker exec -it 容器名称 sh -c "cd /v2b && sh update.sh"
+docker exec -it v2board sh -c "cd /v2b && sh update.sh"
 ```
 
 ## 卸载
