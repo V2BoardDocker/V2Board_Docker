@@ -27,8 +27,8 @@ RUN apt install nginx -y
 RUN rm /etc/nginx/sites-enabled/default
 COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN chmod +x /entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 RUN apt clean all
 ENTRYPOINT ["sh","-c","/entrypoint.sh"]
 
