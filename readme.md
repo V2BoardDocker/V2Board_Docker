@@ -29,7 +29,7 @@ docker exec -it v2board sh -c "cd /v2b && sh init.sh"
 
 与官方一样，使用
 ```shell
-docker exec -it v2board sh -c "cd /v2b && sh update.sh"
+docker exec -it v2board sh -c "cd /v2b && bash update.sh"
 ```
 
 ## 卸载
