@@ -1,11 +1,5 @@
-networks:
-    1panel-network:
-        external: true
-
 services:  
   v2board:
     build: ./
     ports:
       - "8952:80"
-    networks:
-      - 1panel-network
