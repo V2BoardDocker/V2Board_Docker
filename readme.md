@@ -1,4 +1,4 @@
-# V2Board in Docker
+# V2Board Docker Environment
 
 > [!IMPORTANT]
 > 本镜像仅安装V2Board所需要的环境，你还需要手动下载V2Board并配置Web服务
