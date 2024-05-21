@@ -21,6 +21,8 @@ docker exec -it v2board sh -c "cd /v2b && sh init.sh"
 
 默认容器名称 `v2board`
 
+初始化后请对容器进行重新启动，避免队列服务失效
+
 默认Web端口 `8952`
 
 ## 更新面板
