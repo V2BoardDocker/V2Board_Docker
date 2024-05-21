@@ -1,5 +1,6 @@
 services:  
   v2board:
     build: ./
+    container_name: v2board
     ports:
       - "8952:80"
