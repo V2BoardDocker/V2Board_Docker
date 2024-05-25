@@ -1,11 +1,24 @@
 #!/bin/bash
-
-if [ ! -f /v2b/.env ]; then
-    echo -e "\033[0;31m初次运行请使用 docker exec -it 容器名称 sh -c \"cd /v2b && sh init.sh\" 进行初始化\033[0m"
-    echo -e "\033[0;31m初次运行请使用 docker exec -it 容器名称 sh -c \"cd /v2b && sh init.sh\" 进行初始化\033[0m"
-    echo -e "\033[0;31m初次运行请使用 docker exec -it 容器名称 sh -c \"cd /v2b && sh init.sh\" 进行初始化\033[0m"
-fi
-sudo chmod -R 755 /v2b
-sudo chown -R www-data:www-data /v2b
+redis-server &
 nginx
-supervisord
+echo "Nginx started"
+cron
+echo "Cron started"
+FLAG_FILE="/var/run/first_run.flag"
+# 等待数据库启动
+sleep 5
+if [ ! -f "$FLAG_FILE" ]; then
+    echo "Installing v2board..."
+    cd /v2b && php artisan v2board:install
+    touch "$FLAG_FILE"
+    echo "Changing user group permissions, please wait..."
+    echo "chmod -R 755 /v2b"
+    chmod -R 755 /v2b
+    echo "chown -R www-data:www-data /v2b"
+    chown -R www-data:www-data /v2b
+fi
+supervisord &
+# 最后启动 PHP-FPM
+sleep 5
+echo "Now you can visit your site."
+php-fpm7.4 -F

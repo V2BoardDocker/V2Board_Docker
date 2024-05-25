@@ -1,6 +1,32 @@
+networks:
+  v2board-net:
+    driver: bridge
+
 services:  
   v2board:
     build: ./
+    restart: always
     container_name: v2board
     ports:
       - "8952:80"
+    environment:
+      DB_HOST: v2board-mariadb
+      DB_PORT: 3306
+      DB_DATABASE: v2board
+      DB_USERNAME: v2board
+      DB_PASSWORD: ao8QfoB2gncvSh
+      ADMIN_EMAIL: admin@v2board.com
+    networks:
+      - v2board-net
+  db:
+    container_name: v2board-mariadb
+    image: mariadb:10.11.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: VxJt2LdtkQSo29
+      MYSQL_DATABASE: v2board
+      MYSQL_USER: v2board
+      MYSQL_PASSWORD: ao8QfoB2gncvSh
+    networks:
+      - v2board-net
+    
