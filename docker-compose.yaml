@@ -18,6 +18,8 @@ services:
       ADMIN_EMAIL: admin@v2board.com
     networks:
       - v2board-net
+    depends_on:
+      - db
   db:
     container_name: v2board-mariadb
     image: mariadb:10.11.7
@@ -29,4 +31,6 @@ services:
       MYSQL_PASSWORD: ao8QfoB2gncvSh
     networks:
       - v2board-net
+
+    
     
